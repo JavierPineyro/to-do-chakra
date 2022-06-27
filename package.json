@@ -1,7 +1,7 @@
 {
   "name": "todo-app",
   "private": true,
-  "homepage": "http://JavierPineyro.github.io/to-do-chakra",
+  "homepage": "https://javierpineyro.github.io/to-do-chakra",
   "version": "0.0.0",
   "scripts": {
     "predeploy": "vite build",
