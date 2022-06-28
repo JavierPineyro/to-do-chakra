@@ -22,4 +22,4 @@ ReactDOM.createRoot(
   </>
 )
 
-// localStorage.setItem('chakra-ui-color-mode', 'dark')
+// git subtree push --prefix dist origin gh-pages
