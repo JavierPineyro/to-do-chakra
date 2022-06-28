@@ -1,3 +1,4 @@
+import { Button, Input } from '@chakra-ui/react'
 import { useState } from 'react'
 import { createUniqueID, showMessageEmptyInput } from '../utils/utils'
 
@@ -10,7 +11,7 @@ export default function TaskForm ({ createTask, deleteCompletedTask }) {
   const handleSubmit = (evt) => {
     evt.preventDefault()
     const uuid = createUniqueID() // genera ID unica
-    input
+    input && input.trim()
       ? createTask({ id: uuid, content: input, done: false })
       : showMessageEmptyInput()
     setInput('')
@@ -18,13 +19,19 @@ export default function TaskForm ({ createTask, deleteCompletedTask }) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <input
-          onChange={handleChange} value={input} type='text'
+        <Input
+          as='input'
+          paddingLeft={1}
+          size='md'
+          m={2}
+          colorScheme='twitter'
+          maxW={64}
+          variant='flushed' onChange={handleChange} value={input} type='text'
           placeholder='Enter a task...'
         />
-        <button>Save Task</button>
+        <Button m={2} type='submit' color='white' size='sm' variant='solid' colorScheme='twitter'>Save Task</Button>
       </form>
-      <button onClick={deleteCompletedTask}>Clean</button>
+      <Button m={2} as='button' color='white' size='sm' variant='solid' colorScheme='twitter' onClick={deleteCompletedTask}>Clean</Button>
     </>
   )
 }

@@ -1,14 +1,16 @@
 import TaskForm from './components/TaskForm'
 import TaskContent from './components/TaskContent'
 import IconMode from './components/IconMode'
+import './App.css'
+
 import { useState, useEffect } from 'react'
+import { Container, Heading } from '@chakra-ui/react'
 import {
   changeTaskDone,
   cleanDoneTask,
   storageGetItem,
   storageSetItem
 } from './utils/utils'
-import './App.css'
 
 function App () {
   const [tasks, setTasks] = useState([])
@@ -32,12 +34,12 @@ function App () {
   }
 
   return (
-    <div className='App'>
+    <Container maxWidth='container.md' alignSelf='center' className='App'>
       <IconMode />
-      <h1>To-Do App</h1>
+      <Heading>To-Do App</Heading>
       <TaskForm deleteCompletedTask={deleteCompletedTask} createTask={createTask} />
       <TaskContent handleToggle={handleToggle} tasks={tasks} />
-    </div>
+    </Container>
   )
 }
 

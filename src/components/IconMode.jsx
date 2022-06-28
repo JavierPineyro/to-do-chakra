@@ -1,18 +1,14 @@
-import { useState } from 'react'
-
+import { useColorMode, Switch } from '@chakra-ui/react'
 export default function IconMode () {
-  const [colorMode, setColorMode] = useState(true)
-  const changeColorMode = () => {
-    setColorMode(prev => !prev)
-  }
-
+  const { toggleColorMode, colorMode } = useColorMode()
   return (
-    <span onClick={changeColorMode}>
+    <span>
       {
-        colorMode
-          ? '🌙'
-          : '☀️'
+        colorMode === 'light'
+          ? 'Dark Mode'
+          : 'Light Mode'
       }
+      <Switch colorScheme='primary' size='md' onChange={toggleColorMode} />
     </span>
   )
 }
