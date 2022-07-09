@@ -1,14 +1,17 @@
-import { useColorMode, Switch } from '@chakra-ui/react'
+import { Stack, useColorMode } from '@chakra-ui/react'
+import Moon from './Moon'
+import Sun from './Sun'
 export default function IconMode () {
   const { toggleColorMode, colorMode } = useColorMode()
+
   return (
-    <span>
+    <Stack>
       {
         colorMode === 'light'
-          ? 'Dark Mode'
-          : 'Light Mode'
+          ? <Moon toggleColorMode={toggleColorMode} />
+          : <Sun toggleColorMode={toggleColorMode} />
       }
-      <Switch colorScheme='primary' size='md' onChange={toggleColorMode} />
-    </span>
+      {/* <Switch colorScheme='primary' size='md' onChange={toggleColorMode} /> */}
+    </Stack>
   )
 }

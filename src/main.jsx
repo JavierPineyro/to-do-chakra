@@ -9,17 +9,16 @@ ReactDOM.createRoot(
   document.getElementById('root')
 ).render(
   <>
-    <ColorModeScript initialColorMode={{
-      config: {
-        initialColorMode: 'dark',
-        useSystemColorMode: false
-      }
-    }}
-    />
+    <ColorModeScript initialColorMode={theme} />
     <ChakraProvider theme={theme}>
       <App />
     </ChakraProvider>
   </>
 )
 
-// git subtree push --prefix dist origin gh-pages
+/*
+npm run build
+git add dist -f
+git commit -m "asfdsf"
+git subtree push --prefix dist origin gh-pages
+*/

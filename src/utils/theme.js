@@ -21,7 +21,8 @@ export default extendTheme({
     Button: {
       baseStyle: {
         borderLeftRadius: 9999,
-        borderRightRadius: 9999
+        borderRightRadius: 9999,
+        padding: 3
       },
       sizes: {
         lg: {
@@ -33,6 +34,7 @@ export default extendTheme({
         solid: (props) => ({
           backgroundColor: `${props.colorScheme}.500`,
           color: mode(undefined, 'white')(props),
+          padding: mode(3, 3)(props),
           _hover: {
             backgroundColor: `${props.colorScheme}.600`
           }

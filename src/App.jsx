@@ -17,6 +17,11 @@ function App () {
 
   useEffect(() => {
     if (storageGetItem()) setTasks(JSON.parse(storageGetItem()))
+    /* Quedaria mejor asi?
+    const response = storageGetItem()
+    if(response) setTasks(JSON.parse(response))
+
+    */
   }, [])
 
   useEffect(() => {
