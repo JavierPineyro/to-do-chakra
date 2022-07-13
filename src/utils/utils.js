@@ -10,6 +10,12 @@ export const cleanDoneTask = (state) => {
   return state.filter(item => item.done === false)
 }
 
+export const selectAll = (state, value = true) => {
+  return state.map((item) => {
+    return { ...item, done: value }
+  })
+}
+
 export const storageSetItem = (state) => {
   localStorage.setItem('tasks', JSON.stringify(state))
 }
