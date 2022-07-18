@@ -1,4 +1,4 @@
-import { Button, Input, useColorMode, useToast } from '@chakra-ui/react'
+import { Button, Input, Stack, useColorMode, useToast } from '@chakra-ui/react'
 import { useState } from 'react'
 import { createUniqueID } from '../utils/utils'
 
@@ -10,12 +10,9 @@ export default function TaskForm ({ createTask, deleteCompletedTask, selectAllTa
   const toast = useToast()
   const { colorMode } = useColorMode()
 
-  // Change Select Button Content
-  const text = textButton ? 'Select All' : 'Deselect All'
-
   const placeholderStyle = colorMode === 'light'
-    ? { opacity: 1, color: 'gray.600' }
-    : { opacity: 1, color: 'gray.400' }
+    ? { opacity: 1, color: 'twitter.500' }
+    : { opacity: 1, color: 'twitter.500' }
 
   // Functions
   const handleChange = (evt) => {
@@ -42,29 +39,30 @@ export default function TaskForm ({ createTask, deleteCompletedTask, selectAllTa
     setTextButton(prev => !prev)
   }
   return (
-    <>
+    <Stack gap={2} w={[450, 350]} minW={120}>
       <form onSubmit={handleSubmit}>
-        <Input
-          as='input'
-          paddingLeft={1}
-          size='md'
-          m={2}
-          colorScheme='twitter'
-          maxW={64}
-          variant='flushed' onChange={handleChange} value={input} type='text'
-          placeholder='Enter a task...'
-          _placeholder={placeholderStyle}
-        />
-        <Button m={2} type='submit' color='white' size='sm' variant='solid' colorScheme='twitter'>
-          Save Task
-        </Button>
+        <Stack alignItems='center' gap={1} direction='row'>
+          <Input
+            paddingLeft={2}
+            size={['lg', 'md']}
+            colorScheme='twitter'
+            variant='outline' onChange={handleChange} value={input} type='text'
+            placeholder='Enter a task...'
+            _placeholder={placeholderStyle}
+          />
+          <Button m={2} type='submit' color='white' size={['lg', 'sm']} variant='solid' colorScheme='twitter'>
+            Add
+          </Button>
+        </Stack>
       </form>
-      <Button m={2} as='button' color='white' size='sm' variant='solid' colorScheme='twitter' onClick={deleteCompletedTask}>
-        Clean
-      </Button>
-      <Button m={2} w={24} as='button' color='white' size='sm' variant='solid' colorScheme='twitter' onClick={handleTextButton}>
-        {text}
-      </Button>
-    </>
+      <Stack gap={2} justifyContent='start' direction='row'>
+        <Button color='white' size={['lg', 'sm']} variant='solid' colorScheme='twitter' onClick={deleteCompletedTask}>
+          Clean
+        </Button>
+        <Button color='white' size={['lg', 'sm']} variant='solid' colorScheme='twitter' onClick={handleTextButton}>
+          {textButton ? 'Select' : 'Deselect'}
+        </Button>
+      </Stack>
+    </Stack>
   )
 }

@@ -5,7 +5,7 @@ export default function IconMode () {
   const { toggleColorMode, colorMode } = useColorMode()
 
   return (
-    <Stack>
+    <Stack mt={5} h={5}>
       {
         colorMode === 'light'
           ? <Moon toggleColorMode={toggleColorMode} />

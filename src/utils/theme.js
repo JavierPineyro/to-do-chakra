@@ -13,6 +13,7 @@ export default extendTheme({
     global: (props) => ({
       'html, body, #root': {
         color: mode(undefined, 'whiteAlpha.900')(props),
+        backgroundColor: mode('whiteAlpha.700', 'inherit')(props),
         height: '100%'
       }
     })
@@ -22,12 +23,18 @@ export default extendTheme({
       baseStyle: {
         borderLeftRadius: 9999,
         borderRightRadius: 9999,
-        padding: 3
+        padding: 2,
+        width: 24,
+        textAlign: 'center'
       },
       sizes: {
+        sm: {
+          fontSize: 'md',
+          paddingX: 2
+        },
         lg: {
-          paddingY: 3,
-          fontSize: 'md'
+          fontSize: 'lg',
+          paddingX: 4
         }
       },
       variants: {
