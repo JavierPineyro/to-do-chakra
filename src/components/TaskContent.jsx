@@ -3,7 +3,7 @@ import TaskItem from './TaskItem'
 
 export default function TaskContent ({ tasks, handleToggle }) {
   return (
-    <Stack gap={4} direction='colum'>
+    <Stack maxW='2xl' gap={4} direction='column'>
       {
         tasks.map(task =>
           <TaskItem task={task} handleToggle={handleToggle} key={task.id} />

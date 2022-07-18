@@ -10,6 +10,7 @@ export default function TaskForm ({ createTask, deleteCompletedTask, selectAllTa
   const toast = useToast()
   const { colorMode } = useColorMode()
 
+  const backgroundStyle = colorMode === 'light' ? 'gray.200' : 'inherit'
   const placeholderStyle = colorMode === 'light'
     ? { opacity: 1, color: 'twitter.500' }
     : { opacity: 1, color: 'twitter.500' }
@@ -34,16 +35,24 @@ export default function TaskForm ({ createTask, deleteCompletedTask, selectAllTa
       })
     setInput('')
   }
+
   const handleTextButton = () => {
     selectAllTasks(textButton)
     setTextButton(prev => !prev)
   }
+
+  const deleteTask = () => {
+    deleteCompletedTask()
+    setTextButton(prev => !prev)
+  }
+
   return (
     <Stack gap={2} w={[450, 350]} minW={120}>
       <form onSubmit={handleSubmit}>
         <Stack alignItems='center' gap={1} direction='row'>
           <Input
             paddingLeft={2}
+            backgroundColor={backgroundStyle}
             size={['lg', 'md']}
             colorScheme='twitter'
             variant='outline' onChange={handleChange} value={input} type='text'
@@ -56,7 +65,7 @@ export default function TaskForm ({ createTask, deleteCompletedTask, selectAllTa
         </Stack>
       </form>
       <Stack gap={2} justifyContent='start' direction='row'>
-        <Button color='white' size={['lg', 'sm']} variant='solid' colorScheme='twitter' onClick={deleteCompletedTask}>
+        <Button color='white' size={['lg', 'sm']} variant='solid' colorScheme='twitter' onClick={deleteTask}>
           Clean
         </Button>
         <Button color='white' size={['lg', 'sm']} variant='solid' colorScheme='twitter' onClick={handleTextButton}>
