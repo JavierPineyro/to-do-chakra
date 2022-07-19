@@ -3,6 +3,7 @@ import { useToast, Container, Heading, Stack, useColorMode } from '@chakra-ui/re
 import {
   changeTaskDone,
   cleanDoneTask,
+  cleanSingleTask,
   selectAll,
   storageGetItem,
   storageSetItem
@@ -15,6 +16,7 @@ import './App.css'
 function App () {
   const [tasks, setTasks] = useState([])
   const toast = useToast()
+
   const { colorMode } = useColorMode()
 
   useEffect(() => {
@@ -25,6 +27,7 @@ function App () {
     storageSetItem(tasks)
   }, [tasks])
 
+  // I can do all this functions better i know but i dont feel like doin it right now haha sorry:)
   const createTask = newTask => {
     setTasks([...tasks, newTask])
     toast({
@@ -41,6 +44,18 @@ function App () {
   }
   const deleteCompletedTask = () => {
     setTasks(cleanDoneTask(tasks))
+    toast({
+      title: 'Done',
+      position: 'bottom-left',
+      description: 'Task deleted',
+      status: 'success',
+      duration: 5000,
+      variant: 'subtle',
+      isClosable: true
+    })
+  }
+  const deleteSingleTask = (id) => {
+    setTasks(cleanSingleTask(id, tasks))
     toast({
       title: 'Done',
       position: 'bottom-left',
@@ -74,7 +89,7 @@ function App () {
           <TaskForm selectAllTasks={selectAllTasks} deleteCompletedTask={deleteCompletedTask} createTask={createTask} />
         </Stack>
         <Stack>
-          <TaskContent handleToggle={handleToggle} tasks={tasks} />
+          <TaskContent deleteSingleTask={deleteSingleTask} handleToggle={handleToggle} tasks={tasks} />
         </Stack>
       </Stack>
     </Container>

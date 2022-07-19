@@ -1,21 +1,37 @@
-import { Checkbox, Stack, Text, useColorMode } from '@chakra-ui/react'
+import { Checkbox, CloseButton, Stack, Text, useColorMode } from '@chakra-ui/react'
+import { motion } from 'framer-motion'
 
-export default function TaskItem ({ task, handleToggle }) {
+export default function TaskItem ({ task, handleToggle, deleteSingleTask }) {
   const { colorMode } = useColorMode()
+
   const colorTaskDone = colorMode === 'light' ? '#666' : '#aaa'
   const backgroundStyle = colorMode === 'light' ? 'gray.200' : 'blackAlpha.400'
+  const variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.3
+      }
+    }
+  }
+
+  const deleteTask = () => {
+    deleteSingleTask(task.id)
+  }
 
   return (
     <Stack
+      as={motion.div}
+      initial='hidden'
+      animate='visible'
+      exit='hidden'
+      layoutId={task.id}
+      variants={variants}
       backgroundColor={backgroundStyle}
-      // backdropFilter='auto'
-      // backdropInvert='10%'
-      // backdropBlur='2px'
-      // border='1px'
-      p={5} justifyContent='space-between'
+      p={4} justifyContent='space-between'
       borderRadius={10}
-      alignItems='start' direction='row' gap={1}
-      alignContent='baseline'
+      alignItems='center' direction='row' gap={1}
     >
       <Stack maxW={['lg', 'xl']} minW={['lg', 'xl']}>
         {
@@ -33,6 +49,9 @@ export default function TaskItem ({ task, handleToggle }) {
           iconSize='3rem' size='lg'
           onChange={() => handleToggle(task)} isChecked={task.done}
         />
+      </Stack>
+      <Stack>
+        <CloseButton onClick={deleteTask} size='md' />
       </Stack>
     </Stack>
   )

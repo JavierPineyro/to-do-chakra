@@ -16,6 +16,10 @@ export const selectAll = (state, value = true) => {
   })
 }
 
+export const cleanSingleTask = (id, state) => {
+  return state.filter(item => item.id !== id)
+}
+
 export const storageSetItem = (state) => {
   localStorage.setItem('tasks', JSON.stringify(state))
 }
